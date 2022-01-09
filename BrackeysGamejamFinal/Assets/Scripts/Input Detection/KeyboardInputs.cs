@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Input Detection/KeyboardInputs.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Scripts/Basic/General/KeyboardInputs.inputactions'
 
 using System;
 using System.Collections;
@@ -16,12 +16,12 @@ public class @KeyboardInputs : IInputActionCollection, IDisposable
     ""maps"": [
         {
             ""name"": ""TameMenu"",
-            ""id"": ""acee97f5-ea19-4fd1-a72e-e3b4029c78df"",
+            ""id"": ""4a681f9c-b5c9-490e-8f92-34c7250636b3"",
             ""actions"": [
                 {
                     ""name"": ""PressR"",
                     ""type"": ""PassThrough"",
-                    ""id"": ""862f4fed-2167-496e-91ed-45aa1e0aa5e3"",
+                    ""id"": ""b5a978fe-548e-414a-b072-70721fb91e79"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": ""Press""
@@ -30,7 +30,7 @@ public class @KeyboardInputs : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""f86427db-3c2a-4fc7-b587-49b78884bef4"",
+                    ""id"": ""ff11db2c-97cb-481f-9c55-dd6192c5dfda"",
                     ""path"": ""<Keyboard>/r"",
                     ""interactions"": """",
                     ""processors"": """",

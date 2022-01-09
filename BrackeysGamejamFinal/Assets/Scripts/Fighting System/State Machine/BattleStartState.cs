@@ -36,7 +36,7 @@ public class BattleStartState : StateMachineBehaviour
         FM.Enemy = FM.EGO.AddComponent<Enemy>();
         //assign the sprites for animation
         FM.Enemy.ReloadAsLastEnemy(); //ref index assignment is done here
-        SpriteManager.Instance.LoadAndAssign("Enemy");
+        EnemySpriteManager.Instance.LoadAndAssign();
         //update the enemy's HUD
         FM.EHUD = HM.HEnemy;
         FM.EHUD.UpdateHUD(FM.Enemy);

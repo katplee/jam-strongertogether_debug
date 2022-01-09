@@ -143,9 +143,7 @@ public class FightManager : MonoBehaviour
         //must assign the refIndex needed in the sprite manager
         PlayerSpriteManager.Instance.AssignRefIndex(dragonToFuseIndex);
         PlayerSpriteManager.Instance.LoadAndAssign();
-        // SpriteManager.Instance.AssignRefIndex(dragonToFuseIndex);
-        // SpriteManager.Instance.LoadAndAssign("Player");
-        
+
         //change avatar of player
         //SpriteRenderer spriteRenderer = PGO.GetComponent<SpriteRenderer>();
         //spriteRenderer.sprite;
@@ -163,7 +161,7 @@ public class FightManager : MonoBehaviour
     public void PassDragonData(DragonData dragon)
     {
         //set the 
-       Player.SetParametersOnFuse(dragon);
+        Player.SetParametersOnFuse(dragon);
 
         //update the HUDs
         HUDManager.Instance.HPlayer.UpdateHUD(Player);

@@ -16,7 +16,7 @@ public class UIBattleHUD : UIObject
     private Dictionary<string, UIValue> elemValue = new Dictionary<string, UIValue>();
 
     public Animator Animator { get; set; } = null;
-    
+
     public override string Label
     {
         get { return transform.tag; }
@@ -29,7 +29,7 @@ public class UIBattleHUD : UIObject
         Animator = GetComponent<Animator>();
 
         //this method will only be called in the attack scene
-        if(SceneManager.GetActiveScene().name == "AttackScene")
+        if (SceneManager.GetActiveScene().name == "AttackScene")
         {
             HUDManager.Instance.DeclareThis(Label, this);
         }
@@ -116,7 +116,7 @@ public class UIBattleHUD : UIObject
             case "UIArmor":
                 SetArmor(UIObject as UIArmor);
                 break;
-            
+
             case "UIValue":
                 SetValue(UIObject as UIValue, name);
                 break;
