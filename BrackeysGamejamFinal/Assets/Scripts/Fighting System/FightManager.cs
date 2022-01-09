@@ -158,6 +158,11 @@ public class FightManager : MonoBehaviour
         OnDragonFuse?.Invoke();
     }
 
+    public void UppdateCurrentDragonIndex(int newIndex)
+    {
+        currentDragonIndex = newIndex;
+    }
+
     public void PassDragonData(DragonData dragon)
     {
         //set the 

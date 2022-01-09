@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UIPanelButton : UIObject, IPointerDownHandler, IPointerEnterHandler
+public class UIPanelButton : UIObject, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
 {
     private Button button;
     private Image dragonImage;
@@ -97,6 +97,13 @@ public class UIPanelButton : UIObject, IPointerDownHandler, IPointerEnterHandler
             //if the dragon is tamed, proceed to doing the preview animation for the player avatar
             FightManager.Instance.OnFusePreview(buttonIndex);
         }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        if (UIDragonSubPanel.Instance.IsSelected) { return; }
+
+        PlayerSpriteLoader.Instance.SetAvatar(FightManager.Instance.currentDragonIndex);
     }
 
     private void ShowSubPanel()

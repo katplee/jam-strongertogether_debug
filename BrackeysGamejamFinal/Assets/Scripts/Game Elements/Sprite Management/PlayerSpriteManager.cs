@@ -13,7 +13,7 @@ public class PlayerSpriteManager : MonoBehaviour
      * spriteLoader
      */
 
-    public static event Action<int> OnTransferComplete;
+    public static event Action<int, bool> OnTransferComplete;
 
     private static PlayerSpriteManager instance;
     public static PlayerSpriteManager Instance
@@ -100,7 +100,7 @@ public class PlayerSpriteManager : MonoBehaviour
 
         //assign sprites for animation
         //AssignPlayerSprites();
-        OnTransferComplete?.Invoke(refIndex);
+        OnTransferComplete?.Invoke(refIndex, true);
     }
 
     private void InputParameters()
