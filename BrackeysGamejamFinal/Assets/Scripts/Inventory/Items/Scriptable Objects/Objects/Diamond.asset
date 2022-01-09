@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdaaaf2ef5b4183438a04d71399d6b0f, type: 3}
+  m_Name: Diamond
+  m_EditorClassIdentifier: 
+  itemType: 3
+  itemName: Shiny Diamond
+  itemAmount: 1
+  itemSprite: {fileID: 7468865652224819654, guid: 290b617eb015685479052e5cde08390c,
+    type: 3}

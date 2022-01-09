@@ -2,17 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UIContainer : MonoBehaviour
+public class UIContainer : UIObject
 {
-    // Start is called before the first frame update
-    void Start()
+    private UIInventory root;
+
+    public override string Label
     {
-        
+        get { return GetType().Name; }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        if (transform.root.TryGetComponent(out root))
+        {
+            root.DeclareThis(Label, this);
+        }
     }
 }
