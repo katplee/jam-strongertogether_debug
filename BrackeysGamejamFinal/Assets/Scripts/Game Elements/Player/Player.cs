@@ -14,6 +14,8 @@ using Random = UnityEngine.Random;
 
 public class Player : Element
 {
+    public static event Action OnPlayerParamsReady;
+
     private static Player instance;
     public static Player Instance
     {
@@ -26,7 +28,7 @@ public class Player : Element
             return instance;
         }
     }
-
+    
     #region Variables to sort
     private int direction, legion, dieForm;
     private bool reloading = false, dead = false, armed;
@@ -41,6 +43,7 @@ public class Player : Element
 
     #region General Parameters
     private Rigidbody2D rb2d;
+    public bool IsChoosingTame { get; set; } = false;
     #endregion
 
     #region Animation/Movement Parameters
@@ -54,8 +57,6 @@ public class Player : Element
     #region Serialization Parameters
     private PlayerData playerData;
     #endregion
-
-    public bool isChoosingTame = false;
 
     protected override void Awake()
     {
@@ -119,6 +120,16 @@ public class Player : Element
         earthAttack = ((currentLvl == GameManager.earthLevel) ? specialtyAttackMultiplier : 0) * attack;
     }
 
+    //add the attack values of the dragon upon fusion
+    private void ResetAttacks(DragonData dragon)
+    {
+        baseAttack += dragon.baseAttack;
+        fireAttack += dragon.fireAttack;
+        waterAttack += dragon.waterAttack;
+        windAttack += dragon.windAttack;
+        earthAttack += dragon.earthAttack;
+    }
+
     public override void InitialSerialization()
     {
         //assign player to save file
@@ -132,7 +143,7 @@ public class Player : Element
         //BASIC STATS
 
         //if-else loop is to keep the player position set to the position before scene transitioned to the attack scene
-        if(GameManager.currentSceneName == GameManager.attackScene)
+        if (GameManager.currentSceneName == GameManager.attackScene)
         {
             playerData.position = PlayerSave.Instance.LoadPlayerData().player.position;
         }
@@ -140,7 +151,7 @@ public class Player : Element
         {
             playerData.position = transform.position;
         }
-        
+
         playerData.hp = hp;
         playerData.maxHP = maxHP;
         playerData.type = Type;
@@ -159,8 +170,9 @@ public class Player : Element
         playerData.earthAttack = earthAttack;
         playerData.baseAttack = baseAttack;
 
-        //DRAGON STATS        
-        playerData.dragons = Inventory.Instance.Dragons;
+        if (!FindObjectOfType<UIUpdater>()) { return; }
+
+        UIUpdater.Instance.SetAnimParameter(0, GetType().Name.ToLower(), 1);
     }
 
     public override void InitializeDeserialization()
@@ -195,8 +207,12 @@ public class Player : Element
     private void Move()
     {
         if (GameManager.currentSceneName == GameManager.attackScene) { return; }
+        
+        //player is not allowed to move when choosing from the tame menu
+        if (IsChoosingTame) { return; }
 
-        if (isChoosingTame)
+        /*
+        if (IsChoosingTame)
         {
             if (rb2d.velocity.magnitude != 0)
             {
@@ -204,6 +220,7 @@ public class Player : Element
             }
             return;
         }
+        */
 
         float h = Input.GetAxisRaw("Horizontal");
         float v = Input.GetAxisRaw("Vertical");
@@ -259,12 +276,16 @@ public class Player : Element
 
     }
 
-    public void SetParametersOnFuse(float armor)
+    public void SetParametersOnFuse(DragonData dragon)
     {
-        SetStatMaximum(ref maxArmor, Armor + armor);
-        Armor = Armor + armor;
+        //set the dragon's hp as the player's armor
+        SetStatMaximum(ref maxArmor, Armor + dragon.hp);
+        Armor = Armor + dragon.hp;
+
+        //add the dragon's damage stats to the player's
+        ResetAttacks(dragon);
     }
-    
+
     private void TESTPrintPlayerData()
     {
         string playerStats =

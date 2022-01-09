@@ -22,6 +22,10 @@ public class SerializationCommander : MonoBehaviour
     public static Action ReloadAllDragons;
     #endregion
 
+    #region Item events
+    public static Action ReloadAllItems;
+    #endregion
+
     public static SerializationCommander Instance { get; private set; }
 
     private void Awake()
@@ -123,6 +127,9 @@ public class SerializationCommander : MonoBehaviour
 
         //save the position of the player
         Player.Instance.AssignPlayer();
+    
+        //save the inventory
+        InventorySave.Instance.SaveInventoryData();
     }
 
     private void B_AToBSerialization()
@@ -143,6 +150,7 @@ public class SerializationCommander : MonoBehaviour
         ReloadAllEnemies?.Invoke();
         ReloadAllStones?.Invoke();
         ReloadAllDragons?.Invoke();
+        ReloadAllItems?.Invoke();
 
         //reload the stats of the last enemy
 

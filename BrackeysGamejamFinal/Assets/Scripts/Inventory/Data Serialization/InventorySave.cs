@@ -61,6 +61,11 @@ public class InventorySave
         list[index] = dragon;
     }
 
+    public void AssignFlyingDragonIndex(int dragonIndex)
+    {
+        inventory.AssignFlyingDragonIndex(dragonIndex);
+    }
+
     #endregion
 
     #region Stones
@@ -101,6 +106,43 @@ public class InventorySave
 
         List<StoneData> list = inventory.ChooseStoneList(stone.type);
         list[index] = stone;
+    }
+
+    #endregion
+
+    #region Items
+
+    private int FindItem(ItemData specificItem)
+    {
+        List<ItemData> list = inventory.interactableItems;
+
+        foreach (ItemData item in list)
+        {
+            if (item.itemID == specificItem.itemID)
+            {
+                return list.IndexOf(item);
+            }
+        }
+
+        throw new NotFoundInListException();
+    }
+
+    public void TrashItem(ItemType type, int quantity)
+    {
+        inventory.TrashItem(type, quantity);
+    }
+
+    public void PopulateItemList(ItemData item)
+    {
+        inventory.PopulateItemList(item);
+    }
+
+    public void ReplaceItemList(ItemData item)
+    {
+        int index = FindItem(item);
+
+        List<ItemData> list = inventory.interactableItems;
+        list[index] = item;
     }
 
     #endregion

@@ -142,7 +142,7 @@ public class PlayerSpriteLoader : MonoBehaviour
         InventorySave inventorySave = InventorySave.Instance.LoadInventoryData();
         InventoryData inventory = inventorySave.inventory;
 
-        //PlayerSpriteManager.Instance.AssignRefIndex(inventory.flyingDragonIndex);
+        PlayerSpriteManager.Instance.AssignRefIndex(inventory.flyingDragonIndex);
         PlayerSpriteManager.Instance.LoadAndAssign();
     }
 }

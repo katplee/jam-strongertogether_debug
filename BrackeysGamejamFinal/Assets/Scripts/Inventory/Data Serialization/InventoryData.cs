@@ -14,6 +14,7 @@ public class InventoryData
 
     //DRAGONS
     public int dragons;
+    public int flyingDragonIndex;
 
     //QUANTITY PER TYPE
     public List<DragonData> baseDragons = new List<DragonData>();
@@ -21,6 +22,9 @@ public class InventoryData
     public List<DragonData> waterDragons = new List<DragonData>();
     public List<DragonData> earthDragons = new List<DragonData>();
     public List<DragonData> airDragons = new List<DragonData>();
+
+    //INTERACTABLE ITEMS
+    public List<ItemData> interactableItems = new List<ItemData>();
 
     #region Dragons
 
@@ -89,6 +93,11 @@ public class InventoryData
         list.Add(dragon);
     }
 
+    public void AssignFlyingDragonIndex(int dragonIndex)
+    {
+        flyingDragonIndex = dragonIndex;
+    }
+
     #endregion
 
     #region Stones
@@ -152,14 +161,44 @@ public class InventoryData
     }
 
     #endregion
-}
 
-[System.Serializable]
-public class StoneData
-{
-    public StoneType type;
+    #region Items
 
-    public string name;
+    public void PopulateItemList(ItemData item)
+    {
+        interactableItems.Add(item);
+    }
 
-    public bool collected;
+    public List<ItemData> ReturnCollectedItems()
+    {
+        List<ItemData> collectedItems = new List<ItemData>();
+
+        foreach(ItemData item in interactableItems)
+        {
+            if (item.collected) { collectedItems.Add(item); }
+        }
+
+        return collectedItems;
+    }
+
+    public void TrashItem(ItemType type, int quantity)
+    {
+        List<ItemData> collectedItems = ReturnCollectedItems();
+
+        int i = 0;
+        int count = 0;
+
+        while (count < quantity)
+        {
+            if (collectedItems[i].itemType == type)
+            {
+                interactableItems.Remove(collectedItems[i]);
+                count++;
+            }
+            else { i++; }
+        }
+    }
+
+    #endregion
+
 }

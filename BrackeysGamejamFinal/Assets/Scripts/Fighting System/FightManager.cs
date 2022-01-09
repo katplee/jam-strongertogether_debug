@@ -90,7 +90,9 @@ public class FightManager : MonoBehaviour
         {
             // METHOD CALLER: not a dragon | ELEMENT WHOSE TAKEDAMAGE METHOD IS CALLED: not a dragon
             // call format: TakeDamage(float damageAmount)
-            if (attacker.Armor == 0) { NonDragonAttackNonDragon(attacker, receiver); }
+            //if (attacker.Armor == 0) { NonDragonAttackNonDragon(attacker, receiver); }
+            NonDragonAttackNonDragon(attacker, receiver);
+
         }
 
         else if (attacker as Enemy)
@@ -139,8 +141,10 @@ public class FightManager : MonoBehaviour
     {
         //erased parameter: dragondata?
         //must assign the refIndex needed in the sprite manager
-        SpriteManager.Instance.AssignRefIndex(dragonToFuseIndex);
-        SpriteManager.Instance.LoadAndAssign("Player");
+        PlayerSpriteManager.Instance.AssignRefIndex(dragonToFuseIndex);
+        PlayerSpriteManager.Instance.LoadAndAssign();
+        // SpriteManager.Instance.AssignRefIndex(dragonToFuseIndex);
+        // SpriteManager.Instance.LoadAndAssign("Player");
         
         //change avatar of player
         //SpriteRenderer spriteRenderer = PGO.GetComponent<SpriteRenderer>();
@@ -151,13 +155,15 @@ public class FightManager : MonoBehaviour
 
     public void FuseDragonHP()
     {
+        if (!UIDragonSubPanel.Instance.IsSelected) { return; }
+
         OnDragonFuse?.Invoke();
     }
 
     public void PassDragonData(DragonData dragon)
     {
         //set the 
-        Player.SetParametersOnFuse(dragon.hp);
+       Player.SetParametersOnFuse(dragon);
 
         //update the HUDs
         HUDManager.Instance.HPlayer.UpdateHUD(Player);
