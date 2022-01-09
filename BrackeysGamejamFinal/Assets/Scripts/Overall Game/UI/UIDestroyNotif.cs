@@ -1,18 +1,27 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 public class UIDestroyNotif : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static event Action Destroyed;
 
-    // Update is called once per frame
-    void Update()
+    
+
+    #region For addressables system
+    /*
+    //to be attached to prefabs instatiated using the addressable system
+
+    public event Action<AssetReference, UIDestroyNotif> Destroyed;
+    public AssetReference AssetReference { get; set; }
+
+    private void OnDestroy()
     {
-        
+        Destroyed?.Invoke(AssetReference, this);    
     }
+    */
+    #endregion
+
 }
