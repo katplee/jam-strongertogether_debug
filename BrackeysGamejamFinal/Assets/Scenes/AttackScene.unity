@@ -1968,10 +1968,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a4411f9dae6264c804662a3477f6a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elemName: {fileID: 0}
-  elemLevel: {fileID: 0}
-  elemHP: {fileID: 0}
-  elemArmor: {fileID: 0}
 --- !u!114 &1075593258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2248,10 +2244,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a4411f9dae6264c804662a3477f6a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elemName: {fileID: 0}
-  elemLevel: {fileID: 0}
-  elemHP: {fileID: 0}
-  elemArmor: {fileID: 0}
 --- !u!1 &1227779230
 GameObject:
   m_ObjectHideFlags: 0
