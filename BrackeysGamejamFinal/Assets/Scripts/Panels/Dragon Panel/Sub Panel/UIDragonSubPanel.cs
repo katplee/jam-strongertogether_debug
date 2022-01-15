@@ -135,6 +135,7 @@ public class UIDragonSubPanel : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void OnPointerDown(PointerEventData eventData)
     {
+
     }
 
     private Vector3 ParentUpperLeftPoint()

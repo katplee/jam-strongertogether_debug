@@ -158,7 +158,7 @@ public class FightManager : MonoBehaviour
         OnDragonFuse?.Invoke();
     }
 
-    public void UppdateCurrentDragonIndex(int newIndex)
+    public void UpdateCurrentDragonIndex(int newIndex)
     {
         currentDragonIndex = newIndex;
     }
@@ -167,6 +167,11 @@ public class FightManager : MonoBehaviour
     {
         //set the 
         Player.SetParametersOnFuse(dragon);
+
+        //update the current dragon index
+        int newIndex = (int)dragon.dType + 1;
+        UpdateCurrentDragonIndex(newIndex);
+        //Debug.Log(newIndex);
 
         //update the HUDs
         HUDManager.Instance.HPlayer.UpdateHUD(Player);

@@ -77,18 +77,15 @@ public class PlayerSpriteLoader : MonoBehaviour
         }
     }
 
-    private void SetAnimation(int dragonIndex, bool showAnimation = false)
+    private void SetAnimation(int dragonIndex)
     {
         this.dragonIndex = dragonIndex;
 
         //save player sprite prior to fuse preview animation
         origPlayerSprite = spriteRenderer.sprite;
 
-        if (showAnimation)
-        {
-            //set the animation in the blend tree
-            animator.SetFloat("dragonIndex", dragonIndex);
-        }
+        //set the animation in the blend tree
+        animator.SetFloat("dragonIndex", dragonIndex);
         
         //animate
         animator.SetTrigger("animReady");
@@ -128,12 +125,12 @@ public class PlayerSpriteLoader : MonoBehaviour
 
         spriteRenderer.sprite = selectedAvatar;
 
-        //animator.SetFloat("dragonIndex", dragonIndex); this is not needed, I think..
-        animator.SetTrigger("animReady");
-
         //change the currentDragonIndex in fight manager
-        FightManager.Instance.UppdateCurrentDragonIndex(dragonIndex);
+        //was already doine in FightManager.Instance.PassDragonData();
+        //FightManager.Instance.UpdateCurrentDragonIndex(dragonIndex);
 
+        SetAnimation(FightManager.Instance.currentDragonIndex);
+        
         //set dragon sub panel isSelected to false
         UIDragonSubPanel.Instance.IsSelected = false;
         UIDragonPanel.Instance.OnPointerExit(null);
